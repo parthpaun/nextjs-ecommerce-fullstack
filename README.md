@@ -1,2 +1,5 @@
 # nextjs-ecommerce-fullstack
-nextjs 14
+
+Next Js 14,
+App Router,
+MongoDB , mongoose
