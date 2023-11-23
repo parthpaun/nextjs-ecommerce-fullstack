@@ -1,32 +1,31 @@
 import axios from "axios";
-import { revalidatePath } from "next/cache";
-
-
-
+import { request } from "./utils";
 
 export async function addProduct(productData: productData) {
-  const addProductres = await axios.post(
-    "http://localhost:3000/api/products",
-    productData
-  );
+  const addProductres = await request("/api/products", {
+    body: JSON.stringify(productData),
+    method: "POST",
+  });
   return addProductres;
 }
 
 export async function getProducts() {
   try {
-    const productsRes = await fetch(`http://localhost:3000/api/products`, {
+    const url = "/api/products";
+    const requestOptions = {
       cache: "no-store",
-    });
+    };
+    const productsRes = await request(url, requestOptions);
     const data = await productsRes.json();
     return data;
-  } catch {
-    return;
+  } catch (error) {
+    return { error };
   }
 }
 
 export async function getCategories() {
   try {
-    const productsRes = await fetch(`http://localhost:3000/api/categories`, {
+    const productsRes = await fetch(`/api/categories`, {
       cache: "no-store",
     });
     const data = await productsRes.json();
@@ -37,9 +36,9 @@ export async function getCategories() {
 }
 
 export async function deleteProduct(id: String) {
-  const deleteProduct = await axios.delete(
-    "http://localhost:3000/api/products",
-    { data: { id } }
-  );
+  const deleteProduct = await request("/api/products", {
+    body: JSON.stringify({id}),
+    method: "DELETE",
+  });
   return deleteProduct;
 }
