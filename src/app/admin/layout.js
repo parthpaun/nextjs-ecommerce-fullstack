@@ -1,8 +1,7 @@
 import SideBarUserDetails from "./components/SideBarUserDetails";
 import Drawer from "./components/Drawer";
 import Link from "next/link";
-const Layout = ({ children, ...rest }) => {
-  console.log("rest", rest);
+const Layout = ({ children }) => {
   return (
     <div>
       <Drawer>

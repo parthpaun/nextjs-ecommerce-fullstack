@@ -6,7 +6,6 @@ import mongoose from "mongoose";
 connect();
 
 export async function GET(request: NextRequest) {
-  console.log(" mongoose.models.products ", mongoose.models);
   try {
     const products = await Products.find({})
       .populate({ path: "category", select: "_id name" })

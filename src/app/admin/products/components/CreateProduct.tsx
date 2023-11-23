@@ -5,8 +5,6 @@ import { addProduct } from "@/lib/actions";
 import { useRouter } from "next/navigation";
 import Modal from "@/app/components/Modal";
 import { getCategories } from "@/lib/actions";
-import { revalidatePath } from "next/cache";
-
 
 const CreateProduct = () => {
   const initialProductData = {
@@ -58,7 +56,7 @@ const CreateProduct = () => {
             onSubmit={handleSubmit}
             className="flex flex-col items-center py-2"
           >
-            <div className="flex flex-row form-control w-full m-4">
+            <div className="flex justify-items-stretch flex-row form-control w-full m-4">
               <div className="w-1/2">
                 <label className="label">
                   <span className="label-text">Product Name</span>
@@ -77,15 +75,19 @@ const CreateProduct = () => {
                   <span className="label-text">Category</span>
                 </label>
                 <select
-                  className="select select-bordered w-full px-4"
+                  className="select select-bordered w-full "
                   onChange={handleChangeValue}
                   value={productData.category}
                   name="category"
                 >
                   <option key={""} value={""} disabled></option>
-                  {categories?.map((item) => {
+                  {categories?.map((item: { _id: String; name: String }) => {
                     return (
-                      <option key={item._id} value={item?._id} className="my-4">
+                      <option
+                        key={item._id.toString()}
+                        value={item?._id.toString()}
+                        className="my-4"
+                      >
                         {item?.name}
                       </option>
                     );

@@ -12,7 +12,7 @@ const Modal: FC<Props> = (props: Props) => {
   return (
     <>
       <dialog id="my_modal_2" className="modal" open={isOpen}>
-        <div className="modal-box">{children}</div>
+        <div className="modal-box w-max sm:max-w-xl">{children}</div>
         <form method="dialog" className="modal-backdrop">
           <button onClick={() => setIsOpen(false)}>close</button>
         </form>

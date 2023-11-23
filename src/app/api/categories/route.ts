@@ -36,7 +36,6 @@ export async function POST(request: NextRequest) {
   const category = await newCategories.save();
   const newCategoryId = category._id;
   const parentCategoryObject = await Categories.findById(parentCategory);
-  console.log("parentCategoryObject", parentCategoryObject?.subcategories);
   parentCategoryObject?.subcategories?.push(newCategoryId);
   await parentCategoryObject.save();
   try {

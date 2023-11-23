@@ -14,7 +14,6 @@ type Props = {
 
 const ProductList = (props: Props) => {
   const { products = [] } = props;
-  console.log("products", products);
   return (
     <table className="items-center table overflow-x-auto rounded-lg font-semibold text-white text-base">
       <thead>
